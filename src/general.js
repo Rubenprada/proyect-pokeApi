@@ -170,6 +170,17 @@ pokeForm.addEventListener('submit', e => {
     alert('you have to put a value');
     fetchPokemon()
   };
+
+  const main = document.querySelector('.main')
+  const button = document.createElement('button');
+  button.setAttribute('name', 'remove')
+  button.textContent = 'Return';
+  main.appendChild(button);
+  const nav = document.getElementById('.pagination')
+  button.addEventListener('click', e =>{
+    removeChildNodes(pokemonContainer);
+    fetchPokemons(offset, limit);
+  })
 });
 
 //export {fetchPokemon, fetchPokemons, previus, next, createPokemon, progressBars, pokeForm, pokeForm}
