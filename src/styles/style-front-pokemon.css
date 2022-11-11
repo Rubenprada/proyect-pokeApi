@@ -1,0 +1,47 @@
+.pokemon-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.img-container {
+  background-image: url("../logs/blob.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
+}
+
+.name {
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.card-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  width: 30%;
+  margin-bottom: 90px;
+}
+
+.flip-card:hover .card-container {
+  transform: rotateY(180deg);
+}
+
+.pokemon-block p {
+  margin: 5px;
+}/*# sourceMappingURL=style-front-pokemon.css.map */

@@ -1,0 +1,12 @@
+.main__form {
+  display: flex;
+  text-align: center;
+  margin-left: 60px;
+  margin-top: 40px;
+  margin-bottom: 80px;
+}
+
+.button__img {
+  width: 30px;
+  height: 30px;
+}/*# sourceMappingURL=searcher.css.map */
