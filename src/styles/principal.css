@@ -94,7 +94,6 @@ body {
   position: absolute;
   top: 0%;
   height: 250px;
-  background-color: red;
 }
 
 .stat-container {
@@ -108,4 +107,21 @@ body {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 50px;
+}
+
+.footer {
+  background-color: black;
+  background-image: none;
+  height: 250px;
+  display: flex;
+  flex-direction: row;
+}
+
+.footer__link {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  color: antiquewhite;
+  margin: auto;
+  text-decoration: none;
 }/*# sourceMappingURL=principal.css.map */

@@ -1,0 +1,16 @@
+.footer {
+  background-color: black;
+  background-image: none;
+  height: 250px;
+  display: flex;
+  flex-direction: row;
+}
+
+.footer__link {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  color: antiquewhite;
+  margin: auto;
+  text-decoration: none;
+}/*# sourceMappingURL=footer.css.map */
