@@ -1,5 +1,6 @@
 'use strict';
 
+
 const pokemonContainer = document.querySelector(".pokemon-container");
 const previous = document.querySelector("#previous");
 const next = document.querySelector("#next");
@@ -8,18 +9,17 @@ let limit = 8;
 let offset = 1;
 
 
-//funcion para exportar los datos de la api
-function fetchPokemon(id) {
-  fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-    .then((res) => res.json())
-    .then((data) => createPokemon(data))
-};
-//Creo funcion para coger los pokemon, estableciendo un offset(la cantidad que me pinte) y un limit(por cual empieza)
-function fetchPokemons(offset, limit) {
-  
+const fetchPokemons = async() => {
+  const pokemonRequests = [];
   for (let i = offset; i <= offset + limit; i++) {
-    fetchPokemon(i);
+      const promisePokemon = fetch('https://pokeapi.co/api/v2/pokemon/' + i).then(res => res.json());
+      pokemonRequests.push(promisePokemon);  
   }
+  Promise.all(pokemonRequests).then(results => {
+      results.forEach((pokemon, index) => {
+          createPokemon(pokemon, index + 1);
+      });
+  })
 };
 
 //creo una funcion con eventListener para que cuando el offset sea distinto de uno, si le doy al boton de previous, me traiga los
@@ -39,7 +39,7 @@ next.addEventListener("click", () => {
 });
 
 //creo una función para pintar los pokemons
-function createPokemon(pokemon) {
+function createPokemon(pokemon, index) {
 
   //ESTRUCTURA DE LOS DIVS
   //      1-                POKEMON CONTAINER
@@ -147,39 +147,49 @@ function removeChildNodes(parent) {
   }
 };
 
-fetchPokemons(offset, limit);
+fetchPokemons();
 
 
 //Creo una variable para poder coger el formulario
 let pokeForm = document.getElementById('searchPokemon');
-
+//creo una función para extraer pokemon de la api para el buscador
+function searchPokemon(pokemon) {
+  fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`)
+    .then((res) => res.json())
+    .then((data) => {
+      createPokemon(data);
+    });
+}
 //creo un evento con ese formulario
 pokeForm.addEventListener('submit', e => {
   e.preventDefault();
   //creo una variable para coger el valor del input
-  let searchPokemon = document.getElementById('pokemon').value.toLowerCase();
+  let searchPokemons = document.getElementById('pokemon').value.toLowerCase();
   //le digo que si es true me lo muestre
-  fetchPokemon(searchPokemon, true);
+  searchPokemon(searchPokemons, true);
   //que si el valor es true me quite el contenedor de los pokemon y me muestre el que busco
   //y le paso la funcion de remove para eliminar a el hijo de pokemonContainer 
-  if (searchPokemon) {
+  if (searchPokemons) {
     removeChildNodes(pokemonContainer);
-    fetchPokemon()
+    searchPokemon()
   //si no meto valor me salte una alerta
   } else {
     alert('you have to put a value');
-    fetchPokemon()
+    searchPokemon()
   };
 
-  const main = document.querySelector('.main')
+  const main = document.querySelector('.main');
+  const div$$ = document.createElement('div');
   const button = document.createElement('button');
   button.setAttribute('name', 'remove')
   button.textContent = 'Return';
-  main.appendChild(button);
-  const nav = document.getElementById('.pagination')
+  div$$.appendChild(button);
+  const nav = document.getElementById('.pagination');
+  main.appendChild(div$$)
   button.addEventListener('click', e =>{
     removeChildNodes(pokemonContainer);
-    fetchPokemons(offset, limit);
+    removeChildNodes(div$$);
+    fetchPokemons();
   })
 });
 
