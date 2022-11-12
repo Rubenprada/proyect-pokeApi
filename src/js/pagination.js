@@ -8,11 +8,11 @@ const pagination = () => {
   const next = document.querySelector("#next");
   let limit = 8;
   let offset = 1;
-  debugger
+  
   //creo una funcion con eventListener para que cuando el offset sea distinto de uno, si le doy al boton de previous, me traiga los
   //nueve anteriores
   previous.addEventListener("click", () => {
-    debugger
+    
     if (offset != 1) {
       offset -= 9;
       removeChildNodes(pokemonContainer);
@@ -21,7 +21,7 @@ const pagination = () => {
   });
   //creo una funcion para que cuando le de al boton de next me traiga los nueve siguientes
   next.addEventListener("click", () => {
-    debugger
+    
     offset += 9;
     removeChildNodes(pokemonContainer);
     fetchPokemons(offset, limit);
