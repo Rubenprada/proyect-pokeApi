@@ -14,7 +14,7 @@ const pagination = () => {
   previous.addEventListener("click", () => {
     
     if (offset != 1) {
-      offset -= 9;
+      offset -= limit + 1;
       removeChildNodes(pokemonContainer);
       fetchPokemons(offset, limit);
     }
@@ -22,7 +22,7 @@ const pagination = () => {
   //creo una funcion para que cuando le de al boton de next me traiga los nueve siguientes
   next.addEventListener("click", () => {
     
-    offset += 9;
+    offset += limit + 1;
     removeChildNodes(pokemonContainer);
     fetchPokemons(offset, limit);
   });
