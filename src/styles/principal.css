@@ -6,7 +6,7 @@
 }
 
 body {
-  background-image: url(../logs/background.jpeg);
+  background-image: url(../assets/background.jpeg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -35,7 +35,7 @@ body {
 }
 
 .img-container {
-  background-image: url("../logs/blob.jpeg");
+  background-image: url("../assets/blob.jpeg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 50%;

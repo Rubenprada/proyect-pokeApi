@@ -38,7 +38,7 @@ const searcherForm = pokeForm.addEventListener('submit', e => {
     button.textContent = 'Return';
     div$$.appendChild(button);
     const nav = document.getElementById('.pagination');
-    main.appendChild(div$$)
+    main.appendChild(div$$);
     button.addEventListener('click', e =>{
       removeChildNodes(pokemonContainer);
       removeChildNodes(div$$);
